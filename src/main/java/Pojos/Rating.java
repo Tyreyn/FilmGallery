@@ -1,16 +1,17 @@
-package Pojo;
+package Pojos;
 
 import lombok.*;
-import org.bson.types.ObjectId;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Getter
+@Setter
 public class Rating {
 
     private String Site;
+
+    private String UrlOrId;
 
     private double UserRating;
 
