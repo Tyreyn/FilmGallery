@@ -36,7 +36,8 @@ public class FilmGalleryController {
             this.filmInformationDownloaderService = new FilmInformationDownloaderService();
             this.filmInformationDownloaderService.Initialize(
                     filmToSave.getTitles().get(0).getName(),
-                    filmToSave.getProductionYear());
+                    filmToSave.getProductionYear(),
+                    filmToSave.getType());
             filmToSave.setRatings(this.filmInformationDownloaderService.FindFilm());
         }
 
