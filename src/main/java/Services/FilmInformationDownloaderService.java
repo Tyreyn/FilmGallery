@@ -1,6 +1,7 @@
 package Services;
 
 import FilmAggregation.Aggregator;
+import FilmAggregation.FilmwebAggregator;
 import FilmAggregation.ImbdAggregator;
 import FilmAggregation.RottenTomatoesAggregator;
 import Pojos.Rating;
@@ -21,12 +22,15 @@ public class FilmInformationDownloaderService {
 
     private String productionYear;
 
-    public void Initialize(String title, String productionYear){
+    private String type;
+
+    public void Initialize(String title, String productionYear, String type){
         this.title = title;
         this.productionYear = productionYear;
+        this.type = type;
         aggregators.add(new ImbdAggregator(this.title, this.productionYear));
-        aggregators.add(new RottenTomatoesAggregator(this.title, this.productionYear));
-
+        aggregators.add(new RottenTomatoesAggregator(this.title, this.productionYear, this.type));
+        aggregators.add(new FilmwebAggregator(this.title, this.productionYear, this.type));
     }
 
     public List<Rating> FindFilm(){
