@@ -5,6 +5,7 @@ import FilmAggregation.FilmwebAggregator;
 import FilmAggregation.ImbdAggregator;
 import FilmAggregation.RottenTomatoesAggregator;
 import Pojos.Rating;
+import javafx.util.Pair;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Service;
 
@@ -33,13 +34,15 @@ public class FilmInformationDownloaderService {
         aggregators.add(new FilmwebAggregator(this.title, this.productionYear, this.type));
     }
 
-    public List<Rating> FindFilm(){
+    public Pair<List<Rating>, String> GetFilmRatings(){
         List<Rating> ratings = new ArrayList<>();
+        StringBuilder aggregatorsLogsBuilder = new StringBuilder("Starting aggregation ratings");
         if(!aggregators.isEmpty()) {
             for (Aggregator aggregator : aggregators) {
-                ratings.add(aggregator.GetFilmRating());
+                ratings.add(aggregator.GetFilmRating(aggregatorsLogsBuilder));
+                aggregatorsLogsBuilder.append("\nEnd\n\n");
             }
         }
-        return ratings;
+        return new Pair<>(ratings, aggregatorsLogsBuilder.toString());
     }
 }

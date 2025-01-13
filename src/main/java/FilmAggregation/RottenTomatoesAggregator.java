@@ -2,15 +2,15 @@ package FilmAggregation;
 
 import Pojos.Rating;
 import javafx.util.Pair;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.*;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.text.NumberFormat;
 import java.text.ParseException;
-import java.util.List;
+import java.io.File;
 
 public class RottenTomatoesAggregator extends Aggregator {
 
@@ -24,9 +24,9 @@ public class RottenTomatoesAggregator extends Aggregator {
 
     private String RegexFilmId = "[a-zA-Z_]+$";
 
-    private String UserRatingXPath = "//*[@id=\"modules-wrap\"]/div[1]/media-scorecard/rt-button[5]/rt-text";
+    private String UserRatingXPath = "//*[@id=\"modules-wrap\"]/div[1]/media-scorecard/rt-text[1]";
 
-    private String ExperRatingXPath = "//*[@id=\"modules-wrap\"]/div[1]/media-scorecard/rt-button[2]/rt-text";
+    private String ExperRatingXPath = "//*[@id=\"modules-wrap\"]/div[1]/media-scorecard/rt-text[3] ";
 
     private String RatingsUrl = "";
 
